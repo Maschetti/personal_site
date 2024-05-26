@@ -4,18 +4,11 @@
     font-family: 'Circular Std', sans-serif;
 }
 
-#my-picture {
-    width: 9em;
-    height: 9em;
-    overflow: hidden;
-    border-radius: 50%;
-}
-
 body {
     display: grid;
     height: 100vh;
     grid-template-rows: 7fr 1fr;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr 10fr;
     color: white;
 }
 
@@ -27,6 +20,11 @@ aside {
 
 main {
     background-color: #161616;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: scroll;
 }
 
 footer {
@@ -59,14 +57,69 @@ ul {
 #profile {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    gap: 2em;
     background-image: linear-gradient(to bottom, rgb(53, 67, 85), #161616);
 
-    height: 12rem;
+    padding-left: 1.5em;
+    min-height: 12rem;
+    width: calc(100% - 1.5em);
 
     div {
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
+
+    h1 {
+        font-size: 4em;
+    }
+
+    p {
+        font-size: 0.9em;
+        color: #a4a4a4;
+    }
+
+    #my-picture {
+        width: 9em;
+        height: 9em;
+        overflow: hidden;
+        border-radius: 3%;
+    }
+    
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        width: 5em;
+        height: 3em;
+
+        background-color: transparent;
+        border: none;
+
+        font-size: 0.9em;
+        color: #a4a4a4;
+    }
+
+    a:hover {
+        color: white;
+        cursor: pointer;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(83, 83, 83, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(83, 83, 83, 0.8);
 }
