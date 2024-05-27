@@ -10,7 +10,7 @@ const projectsList = [
 class Projects extends HTMLElement {
     constructor() {
         super();
-        this.build()
+        this.build();
     }
 
     build() {
