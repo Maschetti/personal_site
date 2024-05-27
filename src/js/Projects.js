@@ -63,6 +63,7 @@ class Projects extends HTMLElement {
                     padding: 0.5em;
 
                     border-radius: 7.5%;
+                    object-fit: cover;
                 }
 
                 p {
@@ -133,7 +134,6 @@ class Projects extends HTMLElement {
 
     createCardImage(imgSrc) {
         const img = document.createElement('img');
-        console.log(imgSrc);
         img.src = imgSrc;
         return img;
     }
