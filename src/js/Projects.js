@@ -36,7 +36,7 @@ class Projects extends HTMLElement {
                 padding: 1em;
 
                 display: grid;
-                grid-template-columns: repeat(auto-fill, 10em);
+                grid-template-columns: repeat(6, 10em);
                 gap: 1em;
                 
                 list-style-type: none;
@@ -69,7 +69,6 @@ class Projects extends HTMLElement {
                     font-weight: 300;
 
                     margin: 0;
-                    padding: 0 0.5em;
                 }
 
                 .title {
@@ -94,6 +93,7 @@ class Projects extends HTMLElement {
                 display: flex;
                 flex-direction: column;
                 gap: 0.5em;
+                padding: 0.5em
             }
 
         `;
