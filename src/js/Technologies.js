@@ -1,45 +1,45 @@
 const techList = {
     'FrontEnd': [
         {
-            tech: 'React',
+            name: 'React',
+            imgSrc: './src/images/tech/React.png'
+        },
+        {
+            name: 'Django',
+            imgSrc: './src/images/tech/Django.png'
+        },
+        {
+            name: 'JavaScript',
             imgSrc: ''
         },
         {
-            tech: 'Django',
+            name: 'TypeScript',
             imgSrc: ''
         },
         {
-            tech: 'JavaScript',
+            name: 'HTML',
             imgSrc: ''
         },
         {
-            tech: 'TypeScript',
-            imgSrc: ''
-        },
-        {
-            tech: 'HTML',
-            imgSrc: ''
-        },
-        {
-            tech: 'CSS',
+            name: 'CSS',
             imgSrc: ''
         }
     ],
     BackEnd: [
         {
-            tech: 'Django',
+            name: 'Django',
             imgSrc: ''
         },
         {
-            tech: 'Node.js',
+            name: 'Node.js',
             imgSrc: ''
         },
         {
-            tech: 'C',
+            name: 'C',
             imgSrc: ''
         },
         {
-            tech: 'C++',
+            name: 'C++',
             imgSrc: ''
         }
     ]
@@ -57,8 +57,15 @@ class Technologies extends HTMLElement {
 
         const technologies = this.createTechnologies();
 
-        for(let key in techList) {
-            const section = this.createSection(key);
+        for(let sectionName in techList) {
+            const section = this.createSection(sectionName);
+            console.log(sectionName);
+            techList[sectionName].forEach(tech => {
+                const card = this.createCard(tech);
+
+                section.appendChild(card);
+            }); 
+
             technologies.appendChild(section);
         }
 
@@ -71,6 +78,18 @@ class Technologies extends HTMLElement {
         style.textContent = `
             .technologies {
 
+            }
+
+            .img-container {
+                width: 8em;
+                height: 8em;
+                overflow: hidden;
+            }
+
+            img {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
             }
         `
 
@@ -94,6 +113,26 @@ class Technologies extends HTMLElement {
 
         return section;
     }
+
+    createCard(_tech) {
+        const card = document.createElement('div');
+        card.classList.add('card');
+
+        const imgContainer = document.createElement('div');
+        imgContainer.classList.add('img-container');
+
+        const img = document.createElement('img');
+        img.src = _tech.imgSrc;
+        imgContainer.appendChild(img);
+
+        card.appendChild(imgContainer);
+
+        const name = document.createElement('p');
+        name.textContent = _tech.name;
+        card.appendChild(name);
+
+        return card;
+    } 
 }
 
 customElements.define('technologies-container', Technologies);
