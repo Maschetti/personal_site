@@ -81,10 +81,11 @@ ul {
     }
 
     #my-picture {
-        width: 9em;
+        min-width: 9em;
         height: 9em;
         overflow: hidden;
         border-radius: 3%;
+        flex-wrap: nowrap;
     }
     
     a {
