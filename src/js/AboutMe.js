@@ -14,15 +14,13 @@ const info = {
         },
         introduction: {
             title: 'About Me',
-            text: `Hi, I'm Mateus Viana Maschietto!  
-                  I'm a 22 year old Computer Science student pursuing my Bachelor's degree.  
-                  Since I was young, technology has been my passion, and now it's a reality I live every day. 
-                  My ambition is to one day earn a doctorate in Computer Science and I have the confidence that one day I will achive my dream.`
+            text: `Hi, I'm Mateus Viana Maschietto! I'm a 22 year old Computer Science student pursuing my Bachelor's degree. Since I was young, technology has been my passion, and now it's a reality I live every day. My ambition is to one day earn a doctorate in Computer Science and I have the confidence that one day I will achive my dream.`
         },
         hobbies: {
             title: 'Hobbies',
-            text: `In my free time, I have two main hobbies: playing games and and hanging out with my friends.
-                  `
+            text: `In my free time, I have two main hobbies: playing games and hanging out with my friends. When it comes to gaming, I'm all about teaming up with my friends to play competitive games. I also have a soft spot for strategy and RPG games.
+            
+            On the flip side, I love calling my friends over for hangouts at home. Whether it's chatting, playing games, or just having fun together, I just like to have a quality time with my friends.`
         }
     },
 
@@ -41,10 +39,13 @@ const info = {
         },
         introduction: {
             title: 'Sobre mim',
-            text: `Olá, eu sou Mateus Viana Maschietto! 
-                  Tenho 22 anos e sou estudante de Ciência da Computação, cursando o bacharelado. 
-                  Desde jovem, a tecnologia tem sido minha paixão e agora é uma realidade que vivo todos os dias. 
-                  Minha ambição é um dia obter um doutorado em Ciência da Computação e tenho a confiança de que um dia alcançarei meu sonho.`
+            text: `Olá, eu sou Mateus Viana Maschietto! Tenho 22 anos e sou estudante de Ciência da Computação, cursando o bacharelado. Desde jovem, a tecnologia tem sido minha paixão e agora é uma realidade que vivo todos os dias. Minha ambição é um dia obter um doutorado em Ciência da Computação e tenho a confiança de que um dia alcançarei meu sonho.`
+        },
+        hobbies: {
+            title: 'Hobbies',
+            text: `No meu tempo livre, tenho dois principais hobbies: jogar videogames e sair com meus amigos. Quando se trata de jogos, adoro me juntar aos meus amigos para jogar jogos competitivos. Também tenho uma queda por jogos de estratégia e RPG.
+            
+            Por outro lado, adoro chamar meus amigos para passar um tempo juntos em casa. Seja conversando, jogando videogame ou apenas nos divertindo juntos, gosto de aproveitar um tempo de qualidade com meus amigos.`
         }
     }
 }
@@ -64,11 +65,14 @@ class AboutMe extends HTMLElement {
 
         const aboutMe = this.createAboutMe();
 
-        const introduction = this.createIntroduction(translated.introduction);
+        const introduction = this.createTextBoard(translated.introduction, 'intro');
         aboutMe.appendChild(introduction);
 
         const softSkills = this.createSoftSkills(translated.softSkills);
         aboutMe.appendChild(softSkills);
+
+        const hobbies = this.createTextBoard(translated.hobbies, 'hobbies');
+        aboutMe.appendChild(hobbies);
 
         shadow.appendChild(aboutMe);
     }
@@ -81,8 +85,8 @@ class AboutMe extends HTMLElement {
                 padding: 1em;
                 
                 display: grid;
-                grid-template-columns: minmax(20em, 40em) auto;
-                grid-template-rows: auto auto;
+                grid-template-columns: minmax(20em, 40em) minmax(10em, auto);
+                grid-template-rows: auto auto minmax(1em, auto);
 
                 gap: 2em;
             }
@@ -90,7 +94,10 @@ class AboutMe extends HTMLElement {
             p {
                 font-size: 1em;
                 margin: 0;
+
                 text-align: justify;
+                white-space: pre-line;
+                line-height: 1.5;
                 color: #a4a4a4;
             }
 
@@ -112,9 +119,13 @@ class AboutMe extends HTMLElement {
             }
 
             .soft-skills {
-                grid-row: span 2;
+                grid-row: span 3;
                 width: fit-content;
-                height: auto;
+                max-height: 19em;
+            }
+
+            .hobbies {
+                grid-row: span 2;
             }
         `
 
@@ -156,9 +167,9 @@ class AboutMe extends HTMLElement {
         return skill;
     }
 
-    createIntroduction(_introduction) {
+    createTextBoard(_introduction, _class) {
         const introduction = document.createElement('div');
-        introduction.classList.add('intro');
+        introduction.classList.add(_class);
         introduction.classList.add('board');
 
         const title = this.createTitle(_introduction.title);

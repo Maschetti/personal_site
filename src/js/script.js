@@ -3,7 +3,7 @@ const navBarContainers = {
     'projects-nav': 'projects-container',
     'tech-nav': 'technologies-container'
 };
-localStorage.setItem('lenguage', 'en');
+localStorage.setItem('lenguage', 'pt');
 
 document.getElementById('navbar').addEventListener('click', (event) => {
     if(event.target.tagName === 'LI' || event.target.closest('li')) {
