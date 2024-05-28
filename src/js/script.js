@@ -1,15 +1,16 @@
 const navBarContainers = {
-    'About Me': 'about-me-container',
-    'Projects': 'projects-container',
-    'Technologies': 'technologies-container'
+    'about-nav': 'about-me-container',
+    'projects-nav': 'projects-container',
+    'tech-nav': 'technologies-container'
 };
+localStorage.setItem('lenguage', 'en');
 
 document.getElementById('navbar').addEventListener('click', (event) => {
     if(event.target.tagName === 'LI' || event.target.closest('li')) {
         const listItem = event.target.closest('li');
-        const textValue = listItem.querySelector('p').textContent;
+        const id = listItem.id;
 
-        const item = document.createElement(navBarContainers[textValue]);
+        const item = document.createElement(navBarContainers[id]);
 
         const section = document.getElementById('section-container');
         section.innerHTML = '';
