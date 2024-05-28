@@ -1,46 +1,50 @@
 const techList = {
-    'FrontEnd': [
+    FrontEnd: [
         {
             name: 'React',
-            imgSrc: './src/images/tech/React.png'
+            imgSrc: './src/images/tech/react.svg'
         },
         {
             name: 'Django',
-            imgSrc: './src/images/tech/Django.png'
+            imgSrc: './src/images/tech/django.svg'
         },
         {
             name: 'JavaScript',
-            imgSrc: ''
+            imgSrc: './src/images/tech/javascript.svg'
         },
         {
             name: 'TypeScript',
-            imgSrc: ''
+            imgSrc: './src/images/tech/typescript.svg'
         },
         {
             name: 'HTML',
-            imgSrc: ''
+            imgSrc: './src/images/tech/html.svg'
         },
         {
             name: 'CSS',
-            imgSrc: ''
+            imgSrc: './src/images/tech/css.svg'
         }
     ],
     BackEnd: [
         {
             name: 'Django',
-            imgSrc: ''
+            imgSrc: './src/images/tech/django.svg'
         },
         {
             name: 'Node.js',
-            imgSrc: ''
+            imgSrc: './src/images/tech/nodejs.svg'
         },
         {
             name: 'C',
-            imgSrc: ''
+            imgSrc: './src/images/tech/c.svg'
         },
         {
             name: 'C++',
-            imgSrc: ''
+            imgSrc: './src/images/tech/c++.svg'
+        },
+        {
+            name: 'MySQL',
+            imgSrc: './src/images/tech/mysql.svg'
         }
     ]
 }
@@ -59,13 +63,16 @@ class Technologies extends HTMLElement {
 
         for(let sectionName in techList) {
             const section = this.createSection(sectionName);
-            console.log(sectionName);
+            
+            const cardContainer = this.createCardContainer();
+
             techList[sectionName].forEach(tech => {
                 const card = this.createCard(tech);
 
-                section.appendChild(card);
+                cardContainer.appendChild(card);
             }); 
 
+            section.appendChild(cardContainer);
             technologies.appendChild(section);
         }
 
@@ -77,19 +84,33 @@ class Technologies extends HTMLElement {
     
         style.textContent = `
             .technologies {
+                padding: 1em;
 
+                display: flex;
+                flex-direction: column;
+                gap: 2em;
             }
 
-            .img-container {
-                width: 8em;
-                height: 8em;
-                overflow: hidden;
+            .section {
+                p {
+                    font-size: 0.8em;
+                    text-align: center;
+                }
+            }
+
+            .section-title {
+                font-size: 1.3em;
+            }
+
+            .card-container {
+                display: flex;
+                flex-direction: row;
+                gap: 1.5em;
             }
 
             img {
-                width: 100%;
-                height: auto;
-                object-fit: cover;
+                width: 4em;
+                height: 4em;
             }
         `
 
@@ -105,8 +126,9 @@ class Technologies extends HTMLElement {
     createSection(_sectionName) {
         const section = document.createElement('div');
         section.classList.add(_sectionName);
+        section.classList.add('section');
 
-        const title = document.createElement('p');
+        const title = document.createElement('h1');
         title.classList.add('section-title');
         title.textContent = _sectionName;
         section.appendChild(title);
@@ -118,21 +140,22 @@ class Technologies extends HTMLElement {
         const card = document.createElement('div');
         card.classList.add('card');
 
-        const imgContainer = document.createElement('div');
-        imgContainer.classList.add('img-container');
-
         const img = document.createElement('img');
         img.src = _tech.imgSrc;
-        imgContainer.appendChild(img);
-
-        card.appendChild(imgContainer);
+        card.appendChild(img);
 
         const name = document.createElement('p');
         name.textContent = _tech.name;
         card.appendChild(name);
 
         return card;
-    } 
+    }
+
+    createCardContainer() {
+        const cardContainer = document.createElement('div');
+        cardContainer.classList.add('card-container');
+        return cardContainer;
+    }
 }
 
 customElements.define('technologies-container', Technologies);

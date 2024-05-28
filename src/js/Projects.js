@@ -2,7 +2,7 @@ const projectsList = [
     {
         img: './src/images/portifolio.png',
         title: 'Portifólio',
-        description: 'It is my personal site, where I show a bit of me and my projects!',
+        description: 'My personal site, where I show a bit of me and my projects!',
         link: 'http://localhost:5500'      
     },
 ];
