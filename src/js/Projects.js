@@ -1,11 +1,23 @@
-const projectsList = [
-    {
-        img: './src/images/portifolio.png',
-        title: 'Portifólio',
-        description: 'My personal site, where I show a bit of me and my projects!',
-        link: 'http://localhost:5500'      
-    },
-];
+const projectsList = {
+    en: [
+        {
+            img: './src/images/portifolio.png',
+            title: 'Portifolio',
+            description: 'My personal site, where I show a bit of me and my projects!',
+            link: 'http://localhost:5500'      
+        },
+    ],
+
+    pt: [
+        {
+            img: './src/images/portifolio.png',
+            title: 'Portifólio',
+            description: 'Meu site pessoal, onde eu mostro um pouco de mim e meus projetos!',
+            link: 'http://localhost:5500'
+        }
+    ]
+
+};
 
 class Projects extends HTMLElement {
     constructor() {
@@ -19,7 +31,9 @@ class Projects extends HTMLElement {
 
         const projects = this.createProjects();
 
-        projectsList.forEach((project) => {
+        const translated = projectsList[localStorage.getItem('lenguage')];
+
+        translated.forEach((project) => {
             const card = this.createCard(project);
             projects.appendChild(card);
         })

@@ -93,7 +93,7 @@ ul {
     a {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        gap: 0.3em;
 
         width: 5em;
         height: 3em;

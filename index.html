@@ -11,10 +11,10 @@
 <body>
     <aside id="navbar">
         <ul>
-            <li id="about-nav"><i class="bi bi-person"></i><p>About Me</p></li>
-            <li id="education-nav"><i class="bi bi-mortarboard"></i><p>Education</p></li>
-            <li id="projects-nav"><i class="bi bi-window-fullscreen"></i><p>Projects</p></li>
-            <li id="tech-nav"><i class="bi bi-gear"></i><p>Technologies</p></li>
+            <li id="about-nav"><i class="bi bi-person"></i><p></p></li>
+            <li id="education-nav"><i class="bi bi-mortarboard"></i><p></p></li>
+            <li id="projects-nav"><i class="bi bi-window-fullscreen"></i><p></p></li>
+            <li id="tech-nav"><i class="bi bi-gear"></i><p></p></li>
         </ul>
     </aside>
     <main>
@@ -22,10 +22,10 @@
             <img id="my-picture" src="./src/images/MyPicture.jpg" alt="My Picture">
             <div>
                 <h1>This Is Mateus</h1>
-                <p>Computer Science bachelor's student.</p>
+                <p id="sub-title">Computer Science bachelor's student.</p>
                 <a id="resume" href="./src/docs/Curriculo_MateusVianaMaschietto.pdf" download="Curriculo_MateusVianaMaschietto.pdf">
                     <i class="bi bi-file-person"></i>
-                    Resume
+                    <span id="resume-text">Resume</span>
                 </a>
             </div>
         </div>
@@ -37,6 +37,7 @@
     <footer></footer>
 
     <script src="./src/js/AboutMe.js"></script>
+    <script src="./src/js/Education.js"></script>
     <script src="./src/js/Projects.js"></script>
     <script src="./src/js/Technologies.js"></script>
     <script src="./src/js/script.js"></script>
