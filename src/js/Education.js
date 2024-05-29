@@ -137,7 +137,6 @@ class Education extends HTMLElement {
     }
 
     createDate(_date) {
-        console.log(_date)
         const date = document. createElement('p');
         date.classList.add('date');
         date.textContent = _date;
