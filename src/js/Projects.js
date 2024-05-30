@@ -31,7 +31,7 @@ class Projects extends HTMLElement {
 
         const projects = this.createProjects();
 
-        const translated = projectsList[localStorage.getItem('lenguage')];
+        const translated = projectsList[localStorage.getItem('language')];
 
         translated.forEach((project) => {
             const card = this.createCard(project);

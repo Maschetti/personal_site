@@ -58,7 +58,7 @@ class AboutMe extends HTMLElement {
     }
 
     build() {
-        const translated = info[localStorage.getItem('lenguage')];
+        const translated = info[localStorage.getItem('language')];
 
         const shadow = this.attachShadow({mode: 'open'});
         shadow.appendChild(this.styles());

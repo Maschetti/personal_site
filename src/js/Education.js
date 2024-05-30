@@ -38,7 +38,7 @@ class Education extends HTMLElement {
     }
 
     build() {
-        const translated = educationList[localStorage.getItem('lenguage')];
+        const translated = educationList[localStorage.getItem('language')];
 
         const shadow = this.attachShadow({mode: 'open'});
         shadow.appendChild(this.styles());
