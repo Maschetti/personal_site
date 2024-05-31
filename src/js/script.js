@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const listItem = event.target.closest('li');
             const id = listItem.id;
 
+            document.getElementById('profile').style.display = 'flex';
             setContainer(navBarContainers[id]);
             localStorage.setItem('container', navBarContainers[id]);
         }
