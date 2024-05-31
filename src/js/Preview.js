@@ -25,6 +25,34 @@ const previewList = {
             insigths: "I've solidified my foundational skills and gained extensive knowledge about Shadow DOM and Web Components. " +
             "This expertise allows me to create modular, reusable components with encapsulated styles and behavior, enhancing the performance and maintainability of web applications."
         }
+    },
+
+    pt: {
+        1: {
+            videoSrc: 'src/videos/portifolio.mp4',
+            tech: {
+                title: 'Technologies',
+                list: [
+                    {
+                        name: 'JavaScript',
+                        imgSrc: './src/images/tech/javascript.svg'
+                    },
+                    {
+                        name: 'HTML',
+                        imgSrc: './src/images/tech/html.svg'
+                    },
+                    {
+                        name: 'CSS',
+                        imgSrc: './src/images/tech/css.svg'
+                    }
+                ] 
+            },
+            objective: 'O objetivo deste site é mostrar minhas habilidades em programação, projetos e ideias. ' +
+            'Construí-lo do zero me permite experimentar novas tecnologias e me manter atualizado na área. ' +
+            'Ele serve como um portfólio abrangente para potenciais empregadores e clientes, além de ser uma plataforma para compartilhar insights e tutoriais com a comunidade de programação, promovendo conexões e contribuindo para o conhecimento coletivo.',
+            insigths: 'Eu solidifiquei minhas habilidades fundamentais e adquiri um conhecimento extenso sobre Shadow DOM e Web Components. ' +
+            'Essa expertise me permite criar componentes modulares e reutilizáveis, com estilos e comportamentos encapsulados, melhorando o desempenho e a manutenção de aplicações web.'
+        }
     }
 }
 
@@ -43,17 +71,19 @@ class Preview extends HTMLElement {
         const shadow = this.attachShadow({mode: 'open'});
         shadow.appendChild(this.styles());
 
-        const goBackButton = this.createGoBackButton(language);
-
         const preview = this.createPreview();
 
         const video = this.createVideo(translated.videoSrc);
 
         const techBoard = this.createTechBoard(translated.tech);
 
-        preview.appendChild(goBackButton);
+        const objective = this.createTextBoard(translated.objective, 'Objective');
+        const insigths = this.createTextBoard(translated.objective, 'Insigths');
+
         preview.appendChild(video);
         preview.appendChild(techBoard);
+        preview.appendChild(objective);
+        preview.appendChild(insigths);
 
         shadow.appendChild(preview);
     }
@@ -67,17 +97,9 @@ class Preview extends HTMLElement {
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                gap: 2em;
 
                 padding: 2em;
-            }
-
-            .go-back-button {
-                display: flex;
-                flex-direction: row;
-            }
-
-            .go-back-button > * {
-                margin: 0;
             }
 
             video {
@@ -88,7 +110,7 @@ class Preview extends HTMLElement {
                 controls: true;
             }
 
-            .tech-board {
+            .board {
                 width: 100%;
                 p {
                     font-size: 0.7em;
@@ -98,6 +120,10 @@ class Preview extends HTMLElement {
                 display: flex;
                 flex-direction: column;
                 gap: 0.5em;
+            }
+
+            .board * {
+                margin: 0;
             }
 
             .card-container {
@@ -119,7 +145,16 @@ class Preview extends HTMLElement {
 
             img {
                 width: 3em;
-                heigth: 3em;
+                height: 3em;
+            }
+
+            .text {
+                color: #a4a4a4;
+                text-align: justify !important;
+                font-size: 1em !important;
+                line-height: 1;
+
+                padding: 0 1em;
             }
         `
 
@@ -135,12 +170,9 @@ class Preview extends HTMLElement {
     createVideo(_source) {
         const video = document.createElement('video');
         video.autoplay = true;
-        console.log(_source)
 
         const source = document.createElement('source');
         source.src = _source;
-
-        console.log(source);
 
         video.appendChild(source);
 
@@ -157,9 +189,9 @@ class Preview extends HTMLElement {
 
     createTechBoard(_tech) {
         const board = document.createElement('div');
-        board.classList.add('tech-board');
+        board.classList.add('board');
 
-        const title = this.createTechTitle(_tech.title);
+        const title = this.createTitle(_tech.title);
         board.appendChild(title)
 
         const container = this.createCardContainer();
@@ -172,7 +204,7 @@ class Preview extends HTMLElement {
         return board;
     }
 
-    createTechTitle(_title) {
+    createTitle(_title) {
         const title = document.createElement('h1');
         title.classList.add('title');
         title.textContent = _title;
@@ -200,30 +232,26 @@ class Preview extends HTMLElement {
         return card;
     }
 
-    createGoBackButton(language) {
-        const button = document.createElement('button');
-        const symbol = document.createElement('span');
-        const text = document.createElement('p');
+    createTextBoard(_string, _title) {
+        const board = document.createElement('div');
+        board.classList.add('board');
 
-        symbol.innerHTML = '&lsaquo;';
-        text.textContent = language == 'en' ? 'Go Back': 'Voltar';
+        const title = this.createTitle(_title);
+        board.appendChild(title);
 
-        button.classList.add('go-back-button');
-
-        button.appendChild(symbol);
-        button.appendChild(text);
-
-        button.onclick = () => {
-            document.getElementById('profile').style.display = 'flex';
-
-            const item = document.createElement('projects-container');
-            const section = document.getElementById('section-container');
-            section.innerHTML = '';
-            section.appendChild(item);
-        }
-
-        return button;
+        const text = this.createText(_string, 'text');
+        board.appendChild(text);
+        
+        return board;
     }
+
+    createText(_text, _class) {
+        const paragraph = document.createElement('p');
+        paragraph.classList.add(_class);
+        paragraph.textContent = _text;
+        return paragraph;
+    }
+    
 }
 
 customElements.define('preview-container', Preview);
