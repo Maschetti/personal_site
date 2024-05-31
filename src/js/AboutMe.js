@@ -107,7 +107,7 @@ class AboutMe extends HTMLElement {
             }
 
             .board  {
-                border-radius: 3%;
+                border-radius: 10px;
                 padding: 1em;
                 background-color: #212121;
 
