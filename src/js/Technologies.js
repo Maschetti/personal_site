@@ -105,6 +105,7 @@ class Technologies extends HTMLElement {
             .card-container {
                 display: flex;
                 flex-direction: row;
+                flex-wrap: wrap;
                 gap: 1.5em;
             }
 
