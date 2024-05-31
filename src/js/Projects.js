@@ -1,19 +1,19 @@
 const projectsList = {
     en: [
         {
+            id: 1,
             img: './src/images/portifolio.png',
             title: 'Portifolio',
-            description: 'My personal site, where I show a bit of me and my projects!',
-            link: 'http://localhost:5500'      
+            description: 'My personal site, where I show a bit of me and my projects!',    
         },
     ],
 
     pt: [
         {
+            id: 1,
             img: './src/images/portifolio.png',
             title: 'Portifólio',
             description: 'Meu site pessoal, onde eu mostro um pouco de mim e meus projetos!',
-            link: 'http://localhost:5500'
         }
     ]
 
@@ -48,10 +48,9 @@ class Projects extends HTMLElement {
             .projects {
                 margin: 0;
                 padding: 1em;
-
-                display: grid;
-                grid-template-columns: repeat(6, 10em);
-                gap: 1em;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
                 
                 list-style-type: none;
             }
@@ -62,9 +61,8 @@ class Projects extends HTMLElement {
 
                 display: flex;
                 flex-direction: column;
-                gap: 0.25em
 
-                width: 100%;
+                max-width: 10em;
                 height: 14.2em;
 
                 border-radius: 3%;
@@ -77,7 +75,6 @@ class Projects extends HTMLElement {
                     padding: 0.5em;
 
                     border-radius: 7.5%;
-                    object-fit: cover;
                 }
 
                 p {
@@ -140,7 +137,13 @@ class Projects extends HTMLElement {
         card.appendChild(textContainer);
 
         card.onclick = () => {
-            window.location.href = project.link;
+            localStorage.setItem('projectId', project.id);
+            document.getElementById('profile').style.display = 'none';
+
+            const preview = document.createElement('preview-container');
+            const section = document.getElementById('section-container');
+            section.innerHTML = '';
+            section.appendChild(preview);
         }
 
         return card;
