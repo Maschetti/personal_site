@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             document.getElementById('profile').style.display = 'flex';
             setContainer(navBarContainers[id]);
+            localStorage.setItem('projectId', 0);
             localStorage.setItem('container', navBarContainers[id]);
         }
     });
@@ -68,7 +69,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     window.addEventListener('load', () => {
-        const tempContainer = localStorage.getItem('container');
+        const section = document.getElementById('section-container');
+        section.innerHTML = '';
+
+        const projectId = localStorage.getItem('projectId');
+
+        const tempContainer = projectId == 0 ? localStorage.getItem('container'): 'preview-container';
         
         if (tempContainer) {
             setContainer(tempContainer);
@@ -101,6 +107,10 @@ function populateSwitch(_language) {
 };
 
 function setContainer(_container) {
+    if(_container == 'preview-container') {
+        document.getElementById('profile').style.display = 'none';
+    }
+
     const item = document.createElement(_container);
     const section = document.getElementById('section-container');
     section.innerHTML = '';
