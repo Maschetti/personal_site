@@ -124,8 +124,28 @@ class AboutMe extends HTMLElement {
                 max-height: 19em;
             }
 
+            .softs {
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+            }
+
             .hobbies {
                 grid-row: span 2;
+            }
+
+            @media (max-width: 580px) {
+                .about-me {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .softs {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+                
             }
         `
 
@@ -146,11 +166,15 @@ class AboutMe extends HTMLElement {
         const title = this.createTitle(_info.title);
         softSkills.appendChild(title);
 
+
+        const softContainer = document.createElement('div');
+        softContainer.classList.add('softs');
         _info.skills.forEach(element => {
             const skill = this.createSkill(element);
-            softSkills.appendChild(skill);
+            softContainer.appendChild(skill);
         });
-
+        
+        softSkills.appendChild(softContainer);
         return softSkills;
     }
 

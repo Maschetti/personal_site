@@ -62,7 +62,7 @@ class Projects extends HTMLElement {
                 display: flex;
                 flex-direction: column;
 
-                max-width: 10em;
+                max-width: 13em;
                 height: 14.2em;
 
                 border-radius: 3%;
@@ -70,11 +70,11 @@ class Projects extends HTMLElement {
                 transition: background-color 0.2s;
 
                 img {
-                    width: 9em;
-                    height: 9em;
+                    width: 12em;
+                    height: 12em;
                     padding: 0.5em;
 
-                    border-radius: 7.5%;
+                    border-radius: 5px%;
                 }
 
                 p {
@@ -84,13 +84,13 @@ class Projects extends HTMLElement {
                 }
 
                 .title {
-                    font-size: 0.8em;
+                    font-size: 1.5em;
 
                     font-weight: 500;
                 }
 
                 .description {
-                    font-size: 0.75em;
+                    font-size: em;
                     color: #a4a4a4;
                     text-align: justify;
                 }

@@ -35,8 +35,8 @@ const previewList = {
         1: {
             videoSrc: 'src/videos/portifolio.mp4',
             links: {
-                github: '',
-                domain: ''
+                github: 'https://github.com/Maschetti/personal_site',
+                domain: 'http://localhost:5500'
             },
             tech: {
                 title: 'Technologies',
@@ -123,6 +123,7 @@ class Preview extends HTMLElement {
             .video-container {
                 display: flex;
                 flex-direction: column;
+                justify-content: center;
                 gap: 1em;
             }
 
@@ -198,6 +199,18 @@ class Preview extends HTMLElement {
                 line-height: 1;
 
                 padding: 0 1em;
+            }
+
+            @media (max-width: 520px) {
+                video {
+                    width: 20em;
+                }
+            }
+
+            @media (max-width: 340px) {
+                video {
+                    width: 15em;
+                }
             }
         `
 
