@@ -2,6 +2,10 @@ const previewList = {
     en: {
         1: {
             videoSrc: 'src/videos/portifolio.mp4',
+            links: {
+                github: 'https://github.com/Maschetti/personal_site',
+                domain: 'http://localhost:5500'
+            },
             tech: {
                 title: 'Technologies',
                 list: [
@@ -30,6 +34,10 @@ const previewList = {
     pt: {
         1: {
             videoSrc: 'src/videos/portifolio.mp4',
+            links: {
+                github: '',
+                domain: ''
+            },
             tech: {
                 title: 'Technologies',
                 list: [
@@ -74,6 +82,8 @@ class Preview extends HTMLElement {
         const preview = this.createPreview();
 
         const video = this.createVideo(translated.videoSrc);
+        const linkButtons = this.createLinkButton(translated.links);
+        video.appendChild(linkButtons);
 
         const techBoard = this.createTechBoard(translated.tech);
 
@@ -103,11 +113,44 @@ class Preview extends HTMLElement {
             }
 
             video {
-                width: 20em;
+                width: 30em;
             }
 
             video:hover {
                 controls: true;
+            }
+
+            .video-container {
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+            }
+
+            .button-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 1em;
+            }
+
+            .link-button {
+                padding: 0.5em;
+
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+
+                width: 6em;
+
+                color: #a4a4a4;
+                text-decoration: none;
+
+                border-radius: 5px;
+            }
+
+            .link-button:hover {
+                background-color: rgba(0, 0, 0, 0.5);
+                color: white;
             }
 
             .board {
@@ -168,6 +211,9 @@ class Preview extends HTMLElement {
     }
 
     createVideo(_source) {
+        const div = document.createElement('div');
+        div.classList.add('video-container');
+
         const video = document.createElement('video');
         video.autoplay = true;
 
@@ -184,7 +230,34 @@ class Preview extends HTMLElement {
             video.controls = false;
         }
 
-        return video;
+        div.appendChild(video);
+
+        return div;
+    }
+
+    createLinkButton(_links) {
+        const buttonContainer = document.createElement('div');
+        buttonContainer.classList.add('button-container');
+        
+        if (_links.github) {
+            const github = document.createElement('a');
+            github.classList.add('link-button')
+            github.href = _links.github;
+            github.target = '_blank';
+            github.textContent = 'GitHub';
+            buttonContainer.appendChild(github);
+        }
+    
+        if (_links.domain) {
+            const site = document.createElement('a');
+            site.classList.add('link-button')
+            site.href = _links.domain;
+            site.target = '_blank';
+            site.textContent = 'Website';
+            buttonContainer.appendChild(site);
+        }
+    
+        return buttonContainer;
     }
 
     createTechBoard(_tech) {
