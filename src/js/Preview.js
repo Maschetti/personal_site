@@ -4,7 +4,7 @@ const previewList = {
             videoSrc: 'src/videos/portifolio.mp4',
             links: {
                 github: 'https://github.com/Maschetti/personal_site',
-                domain: 'http://localhost:5500'
+                domain: 'mateusviana.com'
             },
             tech: {
                 title: 'Technologies',
@@ -36,7 +36,7 @@ const previewList = {
             videoSrc: 'src/videos/portifolio.mp4',
             links: {
                 github: 'https://github.com/Maschetti/personal_site',
-                domain: 'http://localhost:5500'
+                domain: 'mateusviana.com'
             },
             tech: {
                 title: 'Technologies',
