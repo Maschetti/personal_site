@@ -74,7 +74,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const projectId = localStorage.getItem('projectId');
 
-        const tempContainer = projectId == 0 ? localStorage.getItem('container'): 'preview-container';
+        let tempContainer;
+        if(localStorage.getItem('container')) {
+            tempContainer = projectId == 0 ? localStorage.getItem('container'): 'preview-container';
+        }
+        else {
+            tempContainer = 'about-me-container';
+        }
         
         if (tempContainer) {
             setContainer(tempContainer);
